@@ -11,7 +11,7 @@
 #' player (http://www.videolan.org/vlc/index.html) is installed and on the PATH.
 #' 
 #' @examples
-#' \dontrun {
+#' \dontrun{
 #' # Update all packages and ping when it's ready
 #' update.packages(ask=FALSE); ping()
 #' }

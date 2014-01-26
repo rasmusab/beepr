@@ -10,10 +10,11 @@ Grab Hadley Wickham's `devtools` and install `pingr` directly from github by ent
 
 ```
 install.packages("devtools")
-install_github("rasmusab/pingr")
+library(devtools)
+install_github("pingr", "rasmusab")
 ```
 
-If you're on Linux `pingr` relies on you having the [vlc media player](http://www.videolan.org/vlc/index.html) installed and on the path. If you are on Debian/Ubuntu you can get vlc by running the following in a terminal:
+If you're on Linux `pingr` relies on you having the [vlc media player](http://www.videolan.org/vlc/index.html) installed and on the PATH. If you are on Debian/Ubuntu you can get vlc by running the following in a terminal:
 
 ```
 sudo apt-get install vlc
