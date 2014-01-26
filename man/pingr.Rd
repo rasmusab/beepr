@@ -2,10 +2,10 @@
 \name{pingr}
 \alias{pingr}
 \alias{pingr-package}
-\title{pingr: The package that sounds like it is called.}
+\title{pingr: The package that sounds as it is called.}
 \description{
 This package contains one function, ping(), with one
-purpose to go ping on whatever platform you are on. Is
+purpose: To go ping on whatever platform you are on. Is
 intended to be useful, for example, if you are running a
 long analysis in the background and want to know when it is
 ready. Also useful if you want to irritate colleagues.

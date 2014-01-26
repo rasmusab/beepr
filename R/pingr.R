@@ -24,16 +24,20 @@
 #' @return NULL
 #'   
 #' @examples
-#' cat("Countdown: ")
-#' for(i in 10:0) {
-#'   Sys.sleep(0.5)
-#'   cat(i, " ")
-#' }
-#' ping()
+#' \dontrun{
+#' 
+#' # Update all packages and ping when it's ready
+#' update.packages(ask=FALSE); ping()
+#' 
+#' #Play a fanfare instead of a ping.
+#' ping("fanfare")
+#' #or
+#' ping(3)
 #' 
 #' # Play a random sound
 #' ping(0)
 #' 
+#' }
 #' @export
 ping <- function(sound=1, expr=NULL) {
   expr

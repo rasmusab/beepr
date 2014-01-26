@@ -1,4 +1,4 @@
-#' pingr: The package that sounds like it is called.
+#' pingr: The package that sounds as it is called.
 #' 
 #' This package contains one function, ping(), with one purpose: To go ping on
 #' whatever platform you are on. Is intended to be useful, for example, if you
@@ -11,12 +11,10 @@
 #' player (http://www.videolan.org/vlc/index.html) is installed and on the PATH.
 #' 
 #' @examples
-#' cat("Countdown: ")
-#' for(i in 10:0) {
-#'   Sys.sleep(0.5)
-#'   cat(i, " ")
+#' \dontrun {
+#' # Update all packages and ping when it's ready
+#' update.packages(ask=FALSE); ping()
 #' }
-#' ping()
 #' 
 #' @name pingr
 #' @docType package

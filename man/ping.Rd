@@ -2,13 +2,13 @@
 \alias{ping}
 \title{Play a short sound}
 \usage{
-ping(sound = "ping", expr = NULL)
+ping(sound = 1, expr = NULL)
 }
 \arguments{
   \item{sound}{character string or number of specifying
-  what sound to be played. The default is \code{"ping"}.
-  Possible sounds are: \enumerate{ \item \code{"ping"}
-  \item \code{"coin"} \item \code{"fanfare"} \item
+  what sound to be played.  The default is 1. Possible
+  sounds are: \enumerate{ \item \code{"ping"} \item
+  \code{"coin"} \item \code{"fanfare"} \item
   \code{"complete"} \item \code{"treasure"} \item
   \code{"ready"} \item \code{"shotgun"} \item
   \code{"mario"} \item \code{"wilhelm"} } Any string or
@@ -25,6 +25,7 @@ As an added bonus there are a number of different sounds to
 choose from.
 }
 \examples{
+\dontrun{
 cat("Countdown: ")
 for(i in 10:0) {
   Sys.sleep(0.5)
@@ -32,7 +33,14 @@ for(i in 10:0) {
 }
 ping()
 
+#Play a fanfare instead of a ping.
+ping("fanfare")
+#or
+ping(3)
+
 # Play a random sound
 ping(0)
+
+}
 }
 
