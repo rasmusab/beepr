@@ -19,12 +19,10 @@ sound on Linux \pkg{pingr} depends on that VLC media player
 on the PATH.
 }
 \examples{
-cat("Countdown: ")
-for(i in 10:0) {
-  Sys.sleep(0.5)
-  cat(i, " ")
+\dontrun {
+# Update all packages and ping when it's ready
+update.packages(ask=FALSE); ping()
 }
-ping()
 }
 \author{
 Rasmus Bååth < rasmus.baath@gmail.com >
