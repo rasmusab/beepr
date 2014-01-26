@@ -1,0 +1,16 @@
+Package: pingr
+Type: Package
+Title: The package that sounds like it is called.
+Version: 0.1
+Encoding: UTF-8
+Date: 2014-01-24
+Author: Rasmus Bååth <rasmus.baath@gmail.com>
+Maintainer: Rasmus Bååth <rasmus.baath@gmail.com>
+Description: This package contains one function, ping(), with one purpose to go
+    ping on whatever platform you are on. Is intended to be useful, for
+    example, if you are running a long analysis in the background and want to
+    know when it is ready. Also useful if you want to irritate colleagues.
+License: GPL-3
+Imports:
+    stringr,
+    audio
