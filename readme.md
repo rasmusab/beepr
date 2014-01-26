@@ -1,9 +1,9 @@
-`pingr`: The Package that sounds as it is called.
+`pingr`: The Package that Sounds as it is Called.
 ========================================================
 
 `pingr` is an R package that contains one function, `ping()`, with one purpose: To go *ping* on whatever platform you are on. Is intended to be useful, for example, if you are running a long analysis in the background and want to know when it is ready. Also useful if you want to irritate colleagues.
 
-Instalation
+Installation
 ---------------
 
 Grab Hadley Wickham's `devtools` and install `pingr` directly from github by entering this in an R console:
@@ -42,9 +42,9 @@ Details
 8. "mario"
 9. "wilhelm"
 
-Any string or number not matching the above sounds will reslut in a random sound being played.
+Any string or number not matching the above sounds will result in a random sound being played.
 
-`expr`	An optional expression to be excecuted before the sound.
+`expr`	An optional expression to be executed before the sound.
 
 ###Examples
 
