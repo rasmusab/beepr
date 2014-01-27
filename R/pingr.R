@@ -60,7 +60,7 @@ ping <- function(sound=1, expr=NULL) {
 
 
 play_vlc <- function(fname) {
-  system(paste("vlc -Idummy --play-and-exit", fname), 
+  system(paste("vlc -Idummy --no-loop --no-repeat --play-and-exit", fname), 
          ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
   invisible(NULL)
 }
