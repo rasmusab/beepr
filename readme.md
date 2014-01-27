@@ -42,6 +42,7 @@ Details
 7. "shotgun"
 8. "mario"
 9. "wilhelm"
+10. "facebook"
 
 Any string or number not matching the above sounds will result in a random sound being played.
 

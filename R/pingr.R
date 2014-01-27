@@ -16,6 +16,7 @@
 #'   \item \code{"shotgun"}
 #'   \item \code{"mario"}
 #'   \item \code{"wilhelm"}
+#'   \item \code{"facebook"}
 #' } Any string or number not matching the above sounds will reslut in a random
 #' sound being played.
 #' @param expr An optional expression to be excecuted before the sound.
@@ -49,7 +50,8 @@ ping <- function(sound=1, expr=NULL) {
               ready = "ready_master.wav",
               shotgun = "shotgun.wav",
               mario = "smb_stage_clear.wav",
-              wilhelm = "wilhelm.wav")
+              wilhelm = "wilhelm.wav",
+              facebook = "facebook.wav")
   sound_fname <- sounds[sound]
   if(is.na(sound_fname) || length(sound_fname) != 1) {
     sound_fname <- sample(sounds, size=1)

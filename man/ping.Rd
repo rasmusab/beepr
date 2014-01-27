@@ -11,8 +11,9 @@ ping(sound = 1, expr = NULL)
   \item \code{"fanfare"} \item \code{"complete"} \item
   \code{"treasure"} \item \code{"ready"} \item
   \code{"shotgun"} \item \code{"mario"} \item
-  \code{"wilhelm"} } Any string or number not matching the
-  above sounds will reslut in a random sound being played.}
+  \code{"wilhelm"} \item \code{"facebook"} } Any string or
+  number not matching the above sounds will reslut in a
+  random sound being played.}
 
   \item{expr}{An optional expression to be excecuted before
   the sound.}
