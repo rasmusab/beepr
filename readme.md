@@ -6,7 +6,7 @@
 Installation
 ---------------
 
-Grab Hadley Wickham's `devtools` and install `pingr` directly from github by entering this in an R console:
+Grab Hadley Wickham's `devtools` and install `pingr` directly from github by entering this into an R console:
 
 ```
 install.packages("devtools")
@@ -31,7 +31,7 @@ Details
 
 ### Arguments
 
-`sound`  character string or number of specifying what sound to be played. The default is 1. Possible sounds are:
+`sound`  character string or number specifying what sound to be played. The default is 1. Possible sounds are:
 
 1. "ping"
 2. "coin"

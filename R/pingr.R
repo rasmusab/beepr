@@ -5,7 +5,7 @@
 #'of different sounds to choose from.
 #'
 #'
-#'@param sound character string or number of specifying what sound to be played.
+#'@param sound character string or number specifying what sound to be played.
 #'  The default is 1. Possible sounds are: \enumerate{
 #'   \item \code{"ping"}
 #'   \item \code{"coin"}
