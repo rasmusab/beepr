@@ -67,14 +67,25 @@ play_vlc <- function(fname) {
   invisible(NULL)
 }
 
+play_paplay <- function(fname) {
+  system(paste("paplay ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+  invisible(NULL)
+}
+
 play_audio <- function(fname) {
   sfx <- load.wave(fname)
   play(sfx)
 }
 
 play_file <- function(fname) {
-  if(Sys.info()["sysname"] == "Linux" && str_detect(system("which vlc", intern=TRUE), "vlc$")) {
-    play_vlc(fname)
+  if(Sys.info()["sysname"] == "Linux") {
+    if(str_detect(system("which vlc", intern=TRUE), "vlc$")) {
+      play_vlc(fname)
+    } else if(str_detect(system("which paplay", intern=TRUE), "paplay$")) {
+      play_paplay(fname)
+    } else {
+      play_audio(fname)
+    }
   } else {
     play_audio(fname)
   }
