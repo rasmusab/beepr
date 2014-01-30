@@ -72,6 +72,11 @@ play_paplay <- function(fname) {
   invisible(NULL)
 }
 
+play_aplay <- function(fname) {
+  system(paste("aplay --buffer-time=48000 -N -q", fname), ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+  invisible(NULL)
+}
+
 play_audio <- function(fname) {
   sfx <- load.wave(fname)
   play(sfx)
@@ -83,6 +88,8 @@ play_file <- function(fname) {
       play_vlc(fname)
     } else if(str_detect(system("which paplay", intern=TRUE), "paplay$")) {
       play_paplay(fname)
+    } else if(str_detect(system("which aplay", intern=TRUE), "aplay$")) {
+      play_aplay(fname)
     } else {
       play_audio(fname)
     }
