@@ -14,9 +14,11 @@ ready. Also useful if you want to irritate colleagues.
 The package just contains one function \code{\link{ping}},
 check it out to see what it does. For sound on Windows and
 MacOS \pkg{pingr} depends on the \pkg{audio} package. For
-sound on Linux \pkg{pingr} depends on that VLC media player
+sound on Linux \pkg{pingr} depends on that either the
+paplay utility from the Pulse Audio system, the aplay
+utility from the ALSA system, or VLC media player
 (http://www.videolan.org/vlc/index.html) is installed and
-on the PATH.
+on the PATH. Chances are that you alread have one of these.
 }
 \examples{
 \dontrun{
