@@ -17,7 +17,7 @@
 #'   \item \code{"mario"}
 #'   \item \code{"wilhelm"}
 #'   \item \code{"facebook"}
-#' } Any string or number not matching the above sounds will reslut in a random
+#' } Any string or number not matching the above sounds will result in a random
 #' sound being played.
 #' @param expr An optional expression to be excecuted before the sound.
 #'   
@@ -30,9 +30,9 @@
 #' # Update all packages and ping when it's ready
 #' update.packages(ask=FALSE); ping()
 #' 
-#' #Play a fanfare instead of a ping.
+#' # Play a fanfare instead of a ping.
 #' ping("fanfare")
-#' #or
+#' # or
 #' ping(3)
 #' 
 #' # Play a random sound
