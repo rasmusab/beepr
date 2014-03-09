@@ -5,7 +5,8 @@
 #'of different sounds to choose from.
 #'
 #'
-#'@param sound character string or number specifying what sound to be played.
+#'@param sound character string or number specifying what sound to be played by either
+#' specifying one of the built in sounds or specifying the path to a wav file.
 #'  The default is 1. Possible sounds are: \enumerate{
 #'   \item \code{"ping"}
 #'   \item \code{"coin"}
@@ -17,8 +18,8 @@
 #'   \item \code{"mario"}
 #'   \item \code{"wilhelm"}
 #'   \item \code{"facebook"}
-#' } Any string or number not matching the above sounds will result in a random
-#' sound being played.
+#' } If \code{sound} does not match any of the sounds above, or is a valid path, a random
+#' sound will be played.
 #' @param expr An optional expression to be excecuted before the sound.
 #'   
 #'   
@@ -52,11 +53,15 @@ ping <- function(sound=1, expr=NULL) {
               mario = "smb_stage_clear.wav",
               wilhelm = "wilhelm.wav",
               facebook = "facebook.wav")
-  sound_fname <- sounds[sound]
-  if(is.na(sound_fname) || length(sound_fname) != 1) {
-    sound_fname <- sample(sounds, size=1)
+  if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
+    if(is.character(sound) && file.exists(sound)) {
+      sound_path <- sound
+    } else{
+      sound_path <- system.file(paste("sounds/", sample(sounds, size=1), sep=""), package="pingr")
+    }
+  } else {
+    sound_path <- system.file(paste("sounds/", sounds[sound], sep=""), package="pingr")
   }
-  sound_path <- system.file(paste("sounds/", sound_fname, sep=""), package="pingr")
   play_file(sound_path)
 }
 
