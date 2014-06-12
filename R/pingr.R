@@ -66,6 +66,10 @@ ping <- function(sound=1, expr=NULL) {
 }
 
 
+is_wav_fname <- function(fname) {
+  str_detect(fname, ignore.case("\\.wav$"))
+}
+
 play_vlc <- function(fname) {
   system(paste("vlc -Idummy --no-loop --no-repeat --playlist-autostart --no-media-library --play-and-exit", fname), 
          ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
@@ -89,12 +93,12 @@ play_audio <- function(fname) {
 
 play_file <- function(fname) {
   if(Sys.info()["sysname"] == "Linux") {
-    if(nchar(Sys.which("vlc")) >= 1) {
-      play_vlc(fname)
-    } else if(nchar(Sys.which("paplay")) >= 1) {
+     if(is_wav_fname(fname) && nchar(Sys.which("paplay")) >= 1) {
       play_paplay(fname)
-    } else if(nchar(Sys.which("aplay")) >= 1) {
+    } else if(is_wav_fname(fname) && nchar(Sys.which("aplay")) >= 1) {
       play_aplay(fname)
+    } else if(nchar(Sys.which("vlc")) >= 1) {
+      play_vlc(fname)
     } else {
       play_audio(fname)
     }
@@ -102,19 +106,3 @@ play_file <- function(fname) {
     play_audio(fname)
   }
 }
-
-
-# play_vlc_pid <- function(fname) {
-#   system(paste("vlc -Idummy --play-and-exit", fname), 
-#          ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
-#   ps_out <- system("ps -eo pid,comm,etime| grep vlc", intern=TRUE)
-#   
-#   # Find the pid
-#   pid_df <- read.table(textConnection(paste(ps_out, collapse="\n")), header=FALSE, 
-#                        stringsAsFactors=FALSE, col.names= c("pid", "command", "time"))
-#   vlc_pid <- pid_df$pid[ # Find the pid that is connected to a vlc
-#     str_detect(pid_df$time, "00:0\\d") & # that is less that 10 seconds old and
-#       which.min(as.numeric(str_extract(pid_df$time, "[0-9]+$"))) # youngest old.
-#     ]
-#   vlc_pid
-# }
