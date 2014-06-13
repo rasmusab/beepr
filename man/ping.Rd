@@ -30,11 +30,11 @@ for example, when a script has finished. As an added bonus there are a number
 of different sounds to choose from.
 }
 \examples{
+\donttest{
+# Play a ping sound
+ping()
+}
 \dontrun{
-
-# Update all packages and ping when it's ready
-update.packages(ask=FALSE); ping()
-
 # Play a fanfare instead of a ping.
 ping("fanfare")
 # or
@@ -43,6 +43,8 @@ ping(3)
 # Play a random sound
 ping(0)
 
+# Update all packages and ping when it's ready
+update.packages(ask=FALSE); ping()
 }
 }
 

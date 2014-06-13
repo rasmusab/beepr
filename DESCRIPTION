@@ -1,6 +1,6 @@
 Package: pingr
 Type: Package
-Title: The package that sounds as it is called.
+Title: A Package for Playing Notification Sounds on any Platform
 Version: 1.0
 Encoding: UTF-8
 Date: 2014-06-13

@@ -13,9 +13,9 @@
 #' installed and on the PATH. Chances are that you alread have one of these.
 #' 
 #' @examples
-#' \dontrun{
-#' # Update all packages and ping when it's ready
-#' update.packages(ask=FALSE); ping()
+#' \donttest{
+#' # Play a ping sound
+#' ping()
 #' }
 #' 
 #' @name pingr
