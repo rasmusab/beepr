@@ -6,10 +6,10 @@
 Installation
 ---------------
 
-Grab Hadley Wickham's `devtools` and install `pingr` directly from github by entering this into an R console:
+Grab Hadley Wickham's `devtools` and the `audio` package and install `pingr` directly from github by entering this into an R console:
 
 ```
-install.packages("devtools")
+install.packages(c("devtools", "audio"))
 library(devtools)
 install_github("pingr", "rasmusab")
 ```
@@ -31,7 +31,7 @@ Details
 
 ### Arguments
 
-`sound`  character string or number specifying what sound to be played. The default is 1. Possible sounds are:
+`sound`  character string or number specifying what sound to be played by either specifying one of the built in sounds or specifying the path to a wav file. The default is 1. Possible sounds are:
 
 1. "ping"
 2. "coin"
@@ -44,11 +44,11 @@ Details
 9. "wilhelm"
 10. "facebook"
 
-Any string or number not matching the above sounds will result in a random sound being played.
+If `sound` does not match any of the sounds above, or is a valid path, a random sound will be played.
 
 `expr`	An optional expression to be executed before the sound.
 
-###Examples
+### Examples
 
 ```
 # Update all packages and ping when it's ready
