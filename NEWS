@@ -1,3 +1,10 @@
+pingr 1.0
+===========
+
+* Added the possibility to use `paplay` to play audio on Linux.
+* Changed the priority for which audio program is used first on Linux. `paplay` and `aplay` is now tried first and VLC is used as the last resort.
+* It is now possible to play any wav-file using `ping("my_wav_fil.wav")`
+
 pingr 0.1
 ===========
 
