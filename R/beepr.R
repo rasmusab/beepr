@@ -1,49 +1,44 @@
 #'Play a short sound
 #'
-#'\code{ping} plays a short sound which is useful if you want to get notified, 
+#'\code{beep} plays a short sound which is useful if you want to get notified, 
 #'for example, when a script has finished. As an added bonus there are a number 
 #'of different sounds to choose from.
 #'
+#'If \code{beep} is not able to play the sound a warning is issued rather than 
+#'an error. This is in order to not risk aborting or stopping the process that
+#'you wanted to get notified about.
 #'
-#'@param sound character string or number specifying what sound to be played by either
-#' specifying one of the built in sounds or specifying the path to a wav file.
-#'  The default is 1. Possible sounds are: \enumerate{
-#'   \item \code{"ping"}
-#'   \item \code{"coin"}
-#'   \item \code{"fanfare"}
-#'   \item \code{"complete"}
-#'   \item \code{"treasure"}
-#'   \item \code{"ready"}
-#'   \item \code{"shotgun"}
-#'   \item \code{"mario"}
-#'   \item \code{"wilhelm"}
-#'   \item \code{"facebook"}
-#' } If \code{sound} does not match any of the sounds above, or is a valid path, a random
-#' sound will be played.
-#' @param expr An optional expression to be excecuted before the sound.
-#'   
-#'   
-#' @return NULL
-#'   
+#'@param sound character string or number specifying what sound to be played by
+#'  either specifying one of the built in sounds or specifying the path to a wav
+#'  file. The default is 1. Possible sounds are: \enumerate{ \item \code{"ping"}
+#'  \item \code{"coin"} \item \code{"fanfare"} \item \code{"complete"} \item
+#'  \code{"treasure"} \item \code{"ready"} \item \code{"shotgun"} \item
+#'  \code{"mario"} \item \code{"wilhelm"} \item \code{"facebook"} } If
+#'  \code{sound} does not match any of the sounds above, or is a valid path, a
+#'  random sound will be played.
+#'@param expr An optional expression to be excecuted before the sound.
+#'  
+#'  
+#'@return NULL
+#'  
 #' @examples
-#' \donttest{
-#' # Play a ping sound
-#' ping()
-#' }
+#' # Play a "ping" sound
+#' beep()
+#' 
 #' \dontrun{
-#' # Play a fanfare instead of a ping.
-#' ping("fanfare")
+#' # Play a fanfare instead of a "ping".
+#' beep("fanfare")
 #' # or
-#' ping(3)
+#' beep(3)
 #' 
 #' # Play a random sound
-#' ping(0)
+#' beep(0)
 #' 
-#' # Update all packages and ping when it's ready
-#' update.packages(ask=FALSE); ping()
+#' # Update all packages and "ping" when it's ready
+#' update.packages(ask=FALSE); beep()
 #' }
-#' @export
-ping <- function(sound=1, expr=NULL) {
+#'@export
+beep <- function(sound=1, expr=NULL) {
   expr
   sounds <- c(ping = "microwave_ping_mono.wav",
               coin = "smb_coin.wav",
@@ -59,14 +54,21 @@ ping <- function(sound=1, expr=NULL) {
     if(is.character(sound) && file.exists(sound)) {
       sound_path <- sound
     } else{
-      sound_path <- system.file(paste("sounds/", sample(sounds, size=1), sep=""), package="pingr")
+      sound_path <- system.file(paste("sounds/", sample(sounds, size=1), sep=""), package="beepr")
     }
   } else {
-    sound_path <- system.file(paste("sounds/", sounds[sound], sep=""), package="pingr")
+    sound_path <- system.file(paste("sounds/", sounds[sound], sep=""), package="beepr")
   }
-  play_file(sound_path)
+  tryCatch(play_file(sound_path), error = function(ex) {
+    warning("beep() could not play the sound due to the following error:\n", ex)
+  })
 }
 
+#' @export
+ping <- function(sound=1, expr=NULL) {
+  beep(sound=1, expr=NULL)
+  .Deprecated("beep", msg = "ping(...) is deprecated in favor of beep(...). Same function, different name.")
+}
 
 is_wav_fname <- function(fname) {
   str_detect(fname, ignore.case("\\.wav$"))
