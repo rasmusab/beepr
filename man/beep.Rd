@@ -11,7 +11,7 @@ either specifying one of the built in sounds or specifying the path to a wav
 file. The default is 1. Possible sounds are: \enumerate{ \item \code{"ping"}
 \item \code{"coin"} \item \code{"fanfare"} \item \code{"complete"} \item
 \code{"treasure"} \item \code{"ready"} \item \code{"shotgun"} \item
-\code{"mario"} \item \code{"wilhelm"} \item \code{"facebook"} } If
+\code{"mario"} \item \code{"wilhelm"} \item \code{"facebook"} \item \code{"sword"} } If
 \code{sound} does not match any of the sounds above, or is a valid path, a
 random sound will be played.}
 

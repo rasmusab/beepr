@@ -15,6 +15,13 @@ Installation
 install.packages("beepr")
 ```
 
+You can also grab the development version of `beepr` directly from github:
+
+```
+library(devtools)
+install_github("pingr", "rasmusab")
+```
+
 Requirements
 ---------------
 
@@ -49,6 +56,7 @@ Details
 8. "mario"
 9. "wilhelm"
 10. "facebook"
+11. "sword"
 
 If `sound` does not match any of the sounds above, or is a valid path, a random sound will be played.
 

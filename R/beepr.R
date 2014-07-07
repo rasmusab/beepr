@@ -13,7 +13,7 @@
 #'  file. The default is 1. Possible sounds are: \enumerate{ \item \code{"ping"}
 #'  \item \code{"coin"} \item \code{"fanfare"} \item \code{"complete"} \item
 #'  \code{"treasure"} \item \code{"ready"} \item \code{"shotgun"} \item
-#'  \code{"mario"} \item \code{"wilhelm"} \item \code{"facebook"} } If
+#'  \code{"mario"} \item \code{"wilhelm"} \item \code{"facebook"} \item \code{"sword"} } If
 #'  \code{sound} does not match any of the sounds above, or is a valid path, a
 #'  random sound will be played.
 #'@param expr An optional expression to be excecuted before the sound.
@@ -49,7 +49,8 @@ beep <- function(sound=1, expr=NULL) {
               shotgun = "shotgun.wav",
               mario = "smb_stage_clear.wav",
               wilhelm = "wilhelm.wav",
-              facebook = "facebook.wav")
+              facebook = "facebook.wav",
+              sword = "sword.wav")
   if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
     if(is.character(sound) && file.exists(sound)) {
       sound_path <- sound
