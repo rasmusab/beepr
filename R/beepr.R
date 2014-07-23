@@ -51,15 +51,29 @@ beep <- function(sound=1, expr=NULL) {
               wilhelm = "wilhelm.wav",
               facebook = "facebook.wav",
               sword = "sword.wav")
+  sound_path <- NULL
   if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
-    if(is.character(sound) && file.exists(sound)) {
-      sound_path <- sound
-    } else{
-      sound_path <- system.file(paste("sounds/", sample(sounds, size=1), sep=""), package="beepr")
+    if(is.character(sound)) {
+      sound <- str_trim(sound)
+      if(file.exists(sound)) {
+        sound_path <- sound
+      } else if(str_detect(sound, "^https?://")) {
+        temp_file <- tempfile(pattern="")
+        if(download.file(sound, destfile = temp_file, quiet = TRUE) == 0) { # The file was successfully downloaded
+          sound_path <- temp_file
+        } else {
+          warning(paste("Tried but could not download", sound))
+        }
+      }
     }
   } else {
     sound_path <- system.file(paste("sounds/", sounds[sound], sep=""), package="beepr")
   }
+  
+  if(is.null(sound_path)) { # play a random sound
+    sound_path <- system.file(paste("sounds/", sample(sounds, size=1), sep=""), package="beepr")
+  }
+  
   tryCatch(play_file(sound_path), error = function(ex) {
     warning("beep() could not play the sound due to the following error:\n", ex)
   })
