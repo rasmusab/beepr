@@ -7,13 +7,15 @@ beep(sound = 1, expr = NULL)
 }
 \arguments{
 \item{sound}{character string or number specifying what sound to be played by
-either specifying one of the built in sounds or specifying the path to a wav
-file. The default is 1. Possible sounds are: \enumerate{ \item \code{"ping"}
-\item \code{"coin"} \item \code{"fanfare"} \item \code{"complete"} \item
-\code{"treasure"} \item \code{"ready"} \item \code{"shotgun"} \item
-\code{"mario"} \item \code{"wilhelm"} \item \code{"facebook"} \item \code{"sword"} } If
-\code{sound} does not match any of the sounds above, or is a valid path, a
-random sound will be played.}
+either specifying one of the built in sounds, specifying the path to a wav
+file or specifying an url. The default is 1. Possible sounds are:
+\enumerate{ \item \code{"ping"} \item \code{"coin"} \item \code{"fanfare"}
+\item \code{"complete"} \item \code{"treasure"} \item \code{"ready"} \item
+\code{"shotgun"} \item \code{"mario"} \item \code{"wilhelm"} \item
+\code{"facebook"} \item \code{"sword"} } If \code{sound} does not match any
+of the sounds above, or is a valid path or url, a random sound will be
+played. Currently \code{beep} can only handle http urls, https is not
+supported.}
 
 \item{expr}{An optional expression to be excecuted before the sound.}
 }
