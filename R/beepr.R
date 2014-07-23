@@ -68,6 +68,8 @@ beep <- function(sound=1, expr=NULL) {
         } else {
           warning(paste("Tried but could not download", sound))
         }
+      } else {
+        warning(paste('"', sound, '" is not a valid sound nor path, playing a random sound instead.', sep = ""))
       }
     }
   } else {
