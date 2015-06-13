@@ -85,14 +85,8 @@ beep <- function(sound=1, expr=NULL) {
   })
 }
 
-#' @export
-ping <- function(sound=1, expr=NULL) {
-  beep(sound=1, expr=NULL)
-  .Deprecated("beep", msg = "ping(...) is deprecated in favor of beep(...). Same function, different name.")
-}
-
 is_wav_fname <- function(fname) {
-  str_detect(fname, ignore.case("\\.wav$"))
+  str_detect(fname, regex("\\.wav$", ignore_case = TRUE))
 }
 
 play_vlc <- function(fname) {

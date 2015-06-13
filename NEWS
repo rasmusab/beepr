@@ -1,9 +1,10 @@
 beepr 1.2
 ===========
 
+* Removed the previously deprecated `ping` function.
+* Fixed incompatibility with `stringr` 1.0.0
+* Added support for playing urls like beep("http://www.kessels.com/catsounds/cat1.wav"). Currently "beep" can only handle http urls, https is not supported.
 * Added "sword" sound inspired by the presentation by Yihui Xie at UseR! 2014 (https://github.com/yihui/knitr-talks/tree/master/useR2014)
-* Added experimental support for playing urls like beep("http://www.kessels.com/catsounds/cat1.wav"). Currently "beep" can only handle http urls, https is not supported.
-
 
 beepr 1.1
 ===========

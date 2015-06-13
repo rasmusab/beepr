@@ -1,16 +1,16 @@
 Package: beepr
 Type: Package
 Title: Easily Play Notification Sounds on any Platform
-Version: 1.1
+Version: 1.2
 Encoding: UTF-8
-Date: 2014-06-26
+Date: 2015-06-13
 Author: Rasmus Bååth <rasmus.baath@gmail.com>
 Maintainer: Rasmus Bååth <rasmus.baath@gmail.com>
-Description: This package contains one function, beep(), with one purpose: To
+Description: The sole function of this package is beep(), with the purpose to
     make it easy to play notification sounds on whatever platform you are on.
     It is intended to be useful, for example, if you are running a long analysis
     in the background and want to know when it is ready.
 License: GPL-3
 Imports:
-    stringr,
+    stringr (>= 1.0.0),
     audio
