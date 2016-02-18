@@ -19,7 +19,7 @@ You can also grab the development version of `beepr` directly from github:
 
 ```
 library(devtools)
-install_github("pingr", "rasmusab")
+install_github("rasmusab/beepr")
 ```
 
 Requirements
