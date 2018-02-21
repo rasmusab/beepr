@@ -52,7 +52,8 @@ beep <- function(sound=1, expr=NULL) {
               mario = "smb_stage_clear.wav",
               wilhelm = "wilhelm.wav",
               facebook = "facebook.wav",
-              sword = "sword.wav")
+              sword = "sword.wav",
+	      trombone = "sad_trombone.wav")
   sound_path <- NULL
   if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
     if(is.character(sound)) {
