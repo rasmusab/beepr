@@ -1,7 +1,7 @@
 Package: beepr
 Type: Package
 Title: Easily Play Notification Sounds on any Platform
-Version: 1.2
+Version: 1.2.9000
 Encoding: UTF-8
 Date: 2015-06-13
 Author: Rasmus Bååth <rasmus.baath@gmail.com>
