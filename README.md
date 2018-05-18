@@ -57,6 +57,7 @@ Details
 9. "wilhelm"
 10. "facebook"
 11. "sword"
+12. "computer"
 
 If `sound` does not match any of the sounds above, or is a valid path, a random sound will be played.
 

@@ -14,10 +14,10 @@
 #'  \enumerate{ \item \code{"ping"} \item \code{"coin"} \item \code{"fanfare"}
 #'  \item \code{"complete"} \item \code{"treasure"} \item \code{"ready"} \item
 #'  \code{"shotgun"} \item \code{"mario"} \item \code{"wilhelm"} \item
-#'  \code{"facebook"} \item \code{"sword"} } If \code{sound} does not match any
-#'  of the sounds above, or is a valid path or url, a random sound will be
-#'  played. Currently \code{beep} can only handle http urls, https is not
-#'  supported.
+#'  \code{"facebook"} \item \code{"sword"} \item \code{"computer"}} If 
+#'  \code{sound} does not match any of the sounds above, or is a valid path or 
+#'  url, a random sound will be played. Currently \code{beep} can only handle 
+#'  http urls, https is not supported.
 #'@param expr An optional expression to be excecuted before the sound.
 #'  
 #'  
@@ -52,7 +52,8 @@ beep <- function(sound=1, expr=NULL) {
               mario = "smb_stage_clear.wav",
               wilhelm = "wilhelm.wav",
               facebook = "facebook.wav",
-              sword = "sword.wav")
+              sword = "sword.wav", 
+              computer = "computersaysno.wav")
   sound_path <- NULL
   if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
     if(is.character(sound)) {
