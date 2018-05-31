@@ -11,7 +11,7 @@ This package was previously called `pingr` and included a `ping()` function. It 
 Installation
 ----------------
 
-`beepr` is available on [CRAN](http://cran.r-project.org/) and can be installed from within R by running:
+`beepr` is available on [CRAN](https://cran.r-project.org/) and can be installed from within R by running:
 
 ```
 install.packages("beepr")
