@@ -1,3 +1,9 @@
+beepr 1.3
+===========
+
+* Fixed a bug that made it impossible to play files with spaces on Linux.
+* Added a new function beep_on_error that only beeps if an expression results in an error. (Courtesy of @dobbleobble).
+
 beepr 1.2
 ===========
 
