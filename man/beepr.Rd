@@ -17,7 +17,7 @@ see what it does. For sound on Windows and MacOS \pkg{beepr} depends on the
 \pkg{audio} package. For sound on Linux \pkg{beepr} depends on that either
 the paplay utility from the Pulse Audio system, the aplay utility from the
 ALSA system, or VLC media player (http://www.videolan.org/vlc/index.html) is
-installed and on the PATH. Chances are that you alread have one of these.
+installed and on the PATH. Chances are that you already have one of these.
 }
 \examples{
 # Play a "ping" sound
