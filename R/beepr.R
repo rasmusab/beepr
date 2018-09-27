@@ -163,9 +163,13 @@ play_aplay <- function(fname) {
   invisible(NULL)
 }
 
+package_state <- new.env(parent = emptyenv())
 play_audio <- function(fname) {
+  if(!is.null(package_state$active_audio_instance)) {
+    close(package_state$active_audio_instance)
+  }
   sfx <- load.wave(fname)
-  play(sfx)
+  package_state$active_audio_instance <- play(sfx)
 }
 
 play_file <- function(fname) {
