@@ -136,14 +136,6 @@ beep_on_error <- function(expr, sound = 1) {
   })
 }
 
-
-
-
-
-
-
-
-
 #'Play a short sound if there is a warning message
 #'
 #'\code{beep_on_warning} wraps an expression and plays a short sound whenever a warning occurs.
@@ -198,35 +190,6 @@ beep_on_warning <- function(expr, sound = 1) {
     withRestarts(expr, return_NA = function(x) NA),
     warning = warning_handler)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 is_wav_fname <- function(fname) {
   str_detect(fname, regex("\\.wav$", ignore_case = TRUE))
