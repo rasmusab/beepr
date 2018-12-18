@@ -1,15 +1,15 @@
 #'Play a short sound
 #'
-#'\code{beep} plays a short sound which is useful if you want to get notified, 
-#'for example, when a script has finished. As an added bonus there are a number 
+#'\code{beep} plays a short sound which is useful if you want to get notified,
+#'for example, when a script has finished. As an added bonus there are a number
 #'of different sounds to choose from.
 #'
-#'If \code{beep} is not able to play the sound a warning is issued rather than 
+#'If \code{beep} is not able to play the sound a warning is issued rather than
 #'an error. This is in order to not risk aborting or stopping the process that
 #'you wanted to get notified about.
 #'
-#'@param sound character string or number specifying what sound to be played by 
-#'  either specifying one of the built in sounds, specifying the path to a wav 
+#'@param sound character string or number specifying what sound to be played by
+#'  either specifying one of the built in sounds, specifying the path to a wav
 #'  file or specifying an url. The default is 1. Possible sounds are:
 #'  \enumerate{ \item \code{"ping"} \item \code{"coin"} \item \code{"fanfare"}
 #'  \item \code{"complete"} \item \code{"treasure"} \item \code{"ready"} \item
@@ -19,23 +19,23 @@
 #'  played. Currently \code{beep} can only handle http urls, https is not
 #'  supported.
 #'@param expr An optional expression to be excecuted before the sound.
-#'  
-#'  
+#'
+#'
 #'@return NULL
-#'  
+#'
 #' @examples
 #' # Play a "ping" sound
 #' beep()
-#' 
+#'
 #' \dontrun{
 #' # Play a fanfare instead of a "ping".
 #' beep("fanfare")
 #' # or
 #' beep(3)
-#' 
+#'
 #' # Play a random sound
 #' beep(0)
-#' 
+#'
 #' # Update all packages and "ping" when it's ready
 #' update.packages(ask=FALSE); beep()
 #' }
@@ -75,29 +75,29 @@ beep <- function(sound=1, expr=NULL) {
   } else {
     sound_path <- system.file(paste("sounds/", sounds[sound], sep=""), package="beepr")
   }
-  
+
   if(is.null(sound_path)) { # play a random sound
     sound_path <- system.file(paste("sounds/", sample(sounds, size=1), sep=""), package="beepr")
   }
-  
+
   tryCatch(play_file(sound_path), error = function(ex) {
     warning("beep() could not play the sound due to the following error:\n", ex)
   })
 }
 
-#'Play a short sound if there is an error 
+#'Play a short sound if there is an error
 #'
-#'\code{beep_on_error} wraps an expression and plays a short sound only if an 
-#' error occurs. 
+#'\code{beep_on_error} wraps an expression and plays a short sound only if an
+#' error occurs.
 #'
-#'If \code{beep} is not able to play the sound a warning is issued rather than 
+#'If \code{beep} is not able to play the sound a warning is issued rather than
 #'an error. This is in order to not risk aborting or stopping the process that
 #'you wanted to get notified about.
 #'
 #'@param expr An expression to be evaluated for errors.
-#' 
-#'@param sound character string or number specifying what sound to be played by 
-#'  either specifying one of the built in sounds, specifying the path to a wav 
+#'
+#'@param sound character string or number specifying what sound to be played by
+#'  either specifying one of the built in sounds, specifying the path to a wav
 #'  file or specifying an url. The default is 1. Possible sounds are:
 #'  \enumerate{ \item \code{"ping"} \item \code{"coin"} \item \code{"fanfare"}
 #'  \item \code{"complete"} \item \code{"treasure"} \item \code{"ready"} \item
@@ -106,35 +106,127 @@ beep <- function(sound=1, expr=NULL) {
 #'  of the sounds above, or is a valid path or url, a random sound will be
 #'  played. Currently \code{beep} can only handle http urls, https is not
 #'  supported.
-#'  
-#'  
+#'
+#'
 #'@return NULL
-#'  
+#'
 #'@examples
 #' # Play a "ping" sound if \code{expr} produces an error
 #' beep_on_error(log("foo"))
-#' 
+#'
 #' # Stay silent if \code{expr} does not produce an error
 #' beep_on_error(log(1))
-#' 
+#'
 #' \dontrun{
 #' # Play the Wilhelm scream instead of a ping on error.
 #' beep_on_error(runif("bar"), "wilhelm")
 #' }
-#' 
+#'
 #'@export
 
 beep_on_error <- function(expr, sound = 1) {
   q_expr <- substitute(expr)
-  
+
   msg <- paste0("An error occurred in ", deparse(q_expr))
   e <- simpleError(msg)
-  
+
   tryCatch(expr, error = function(e) {
     message(paste0(msg, ": ", e$message))
     beep(sound)
   })
 }
+
+
+
+
+
+
+
+
+
+#'Play a short sound if there is a warning message
+#'
+#'\code{beep_on_warning} wraps an expression and plays a short sound whenever a warning occurs.
+#'
+#'If \code{beep} is not able to play the sound a warning is issued rather than
+#'an error. This is in order to not risk aborting or stopping the process that
+#'you wanted to get notified about.
+#'
+#'@param expr An expression to be evaluated for errors.
+#'
+#'@param sound character string or number specifying what sound to be played by
+#'  either specifying one of the built in sounds, specifying the path to a wav
+#'  file or specifying an url. The default is 1. Possible sounds are:
+#'  \enumerate{ \item \code{"ping"} \item \code{"coin"} \item \code{"fanfare"}
+#'  \item \code{"complete"} \item \code{"treasure"} \item \code{"ready"} \item
+#'  \code{"shotgun"} \item \code{"mario"} \item \code{"wilhelm"} \item
+#'  \code{"facebook"} \item \code{"sword"} } If \code{sound} does not match any
+#'  of the sounds above, or is a valid path or url, a random sound will be
+#'  played. Currently \code{beep} can only handle http urls, https is not
+#'  supported.
+#'
+#'
+#'@return NULL
+#'
+#'@examples
+#' # Play a "ping" sound when \code{expr} signals a warning
+#' # In the case below, it plays one every 2 seconds
+#' beep_on_warning({
+#'   warning("First warning")
+#'   Sys.sleep(2)
+#'   warning("Second warning")
+#'   Sys.sleep(2)
+#'   warning("Third warning")
+#'   "end"
+#' })
+#'
+#' # Stay silent if \code{expr} does not produce an error
+#' beep_on_warning(log(1))
+#'
+#' \dontrun{
+#' # Play the Wilhelm scream instead of a ping on a warning.
+#' beep_on_warning(warning("oops"), "wilhelm")
+#' }
+#'
+#'@export
+
+beep_on_warning <- function(expr, sound = 1) {
+  warning_handler <- function(w)
+    beepr::beep(sound)
+
+  withCallingHandlers(
+    withRestarts(expr, return_NA = function(x) NA),
+    warning = warning_handler)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 is_wav_fname <- function(fname) {
   str_detect(fname, regex("\\.wav$", ignore_case = TRUE))
@@ -146,7 +238,7 @@ escape_spaces <- function(s) {
 
 play_vlc <- function(fname) {
   fname <- escape_spaces(fname)
-  system(paste0("vlc -Idummy --no-loop --no-repeat --playlist-autostart --no-media-library --play-and-exit ", fname), 
+  system(paste0("vlc -Idummy --no-loop --no-repeat --playlist-autostart --no-media-library --play-and-exit ", fname),
          ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
   invisible(NULL)
 }

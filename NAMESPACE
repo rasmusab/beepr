@@ -2,6 +2,7 @@
 
 export(beep)
 export(beep_on_error)
+export(beep_on_warning)
 import(audio)
 import(stringr)
 import(utils)
