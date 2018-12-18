@@ -184,12 +184,13 @@ beep_on_error <- function(expr, sound = 1) {
 
 beep_on_warning <- function(expr, sound = 1) {
   warning_handler <- function(w)
-    beepr::beep(sound)
+    beep(sound)
 
   withCallingHandlers(
     withRestarts(expr, return_NA = function(x) NA),
     warning = warning_handler)
 }
+
 
 is_wav_fname <- function(fname) {
   str_detect(fname, regex("\\.wav$", ignore_case = TRUE))
