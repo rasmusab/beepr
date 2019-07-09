@@ -12,6 +12,8 @@ Description: The main function of this package is beep(), with the purpose to
     It is intended to be useful, for example, if you are running a long analysis
     in the background and want to know when it is ready.
 License: GPL-3
+URL: https://github.com/rasmusab/beepr
+BugReports: https://github.com/rasmusab/beepr/issues
 Imports:
     stringr (>= 1.0.0),
     audio
