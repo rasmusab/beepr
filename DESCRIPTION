@@ -17,4 +17,4 @@ BugReports: https://github.com/rasmusab/beepr/issues
 Imports:
     stringr (>= 1.0.0),
     audio
-RoxygenNote: 6.1.0
+RoxygenNote: 7.0.0
