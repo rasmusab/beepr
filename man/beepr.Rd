@@ -4,7 +4,6 @@
 \encoding{UTF-8}
 \name{beepr}
 \alias{beepr}
-\alias{beepr-package}
 \title{Easily Play Notification Sounds on any Platform}
 \description{
 This package contains one function, beep(), with one purpose: To make it easy
