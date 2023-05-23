@@ -1,0 +1,4 @@
+Name: Play beep
+Description: Run the function `beepr::beep()` in the command line.
+Binding: beeprAddin
+Interactive: false
