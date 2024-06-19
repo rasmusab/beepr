@@ -183,3 +183,15 @@ play_file <- function(fname) {
     play_audio(fname)
   }
 }
+
+beeprAddin <- function() {
+  if (requireNamespace("rstudioapi", quietly = TRUE)) {
+    rstudioapi::sendToConsole("beepr::beep()", focus=FALSE)
+  } else {
+    stop(
+      "Package \"rstudioapi\" must be installed to use the beepr addin.",
+      call. = FALSE
+    )
+  }
+  
+}
