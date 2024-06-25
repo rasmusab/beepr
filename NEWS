@@ -2,6 +2,7 @@ beepr 1.3.9000
 ===========
 
 * Fixed a bug that resulted in R crashing when calling `beep()` multiple times in a short time frame. (#26)
+* Removed the dependency on `stringr` (#42)
 
 beepr 1.3
 ===========
