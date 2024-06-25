@@ -65,7 +65,7 @@ beep <- function(sound=1, expr=NULL) {
         sound_path <- sound
       } else if(grepl(pattern = "^http(s?)://", x = sound)) {
         temp_file <- tempfile(pattern="")
-        if(download.file(sound, destfile = temp_file, quiet = TRUE) == 0) { # The file was successfully downloaded
+        if(download.file(sound, destfile = temp_file, mode = "wb", quiet = TRUE) == 0) { # The file was successfully downloaded
           sound_path <- temp_file
         } else {
           warning(paste("Tried but could not download", sound))
