@@ -16,9 +16,9 @@
 #'  \code{"shotgun"} \item \code{"mario"} \item \code{"wilhelm"} \item
 #'  \code{"facebook"} \item \code{"sword"} } If \code{sound} does not match any
 #'  of the sounds above, or is a valid path or url, a random sound will be
-#'  played. Currently \code{beep} can only handle http urls, https is not
-#'  supported.
-#'@param expr An optional expression to be excecuted before the sound.
+#'  played. If a negative number is given or the string "none" is given, no
+#'  sound will be played.
+#'@param expr An optional expression to be executed before the sound.
 #'  
 #'  
 #'@return NULL
@@ -54,7 +54,10 @@ beep <- function(sound=1, expr=NULL) {
               facebook = "facebook.wav",
               sword = "sword.wav")
   sound_path <- NULL
-  if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
+  if(sound < 0 || sound == "none") {
+    # Play the sound of silence
+    return(invisible())
+  } else if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
     if(is.character(sound)) {
       # Trimming white space from the string defining the sound
       sound <- gsub("(^\\s+|\\s+$)", "", sound)
