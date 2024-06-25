@@ -177,10 +177,10 @@ play_audio <- function(fname) {
 
 play_file <- function(fname) {
   if(Sys.info()["sysname"] == "Linux") {
-     if(is_wav_fname(fname) && nchar(Sys.which("paplay")) >= 1) {
-      play_paplay(fname)
-    } else if(is_wav_fname(fname) && nchar(Sys.which("aplay")) >= 1) {
+    if(is_wav_fname(fname) && nchar(Sys.which("aplay")) >= 1) {
       play_aplay(fname)
+    } else if(is_wav_fname(fname) && nchar(Sys.which("paplay")) >= 1) {
+      play_paplay(fname)
     } else if(nchar(Sys.which("vlc")) >= 1) {
       play_vlc(fname)
     } else {

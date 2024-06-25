@@ -1,5 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^scratchpad_sounds$
+^scratchpad$
 ^blog_posts$
 ^cran-comments\.md$
