@@ -3,8 +3,8 @@
 \docType{package}
 \encoding{UTF-8}
 \name{beepr}
-\alias{beepr}
 \alias{beepr-package}
+\alias{beepr}
 \title{Easily Play Notification Sounds on any Platform}
 \description{
 This package contains one function, beep(), with one purpose: To make it easy
@@ -23,6 +23,14 @@ installed and on the PATH. Chances are that you already have one of these.
 \examples{
 # Play a "ping" sound
 beep()
+
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/rasmusab/beepr}
+  \item Report bugs at \url{https://github.com/rasmusab/beepr/issues}
+}
 
 }
 \author{

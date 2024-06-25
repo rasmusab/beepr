@@ -56,12 +56,11 @@ beep <- function(sound=1, expr=NULL) {
   sound_path <- NULL
   if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
     if(is.character(sound)) {
-      sound <- str_trim(sound)
+      # Trimming white space from the string defining the sound
+      sound <- gsub("(^\\s+|\\s+$)", "", sound)
       if(file.exists(sound)) {
         sound_path <- sound
-      } else if(str_detect(sound, "^https://")) {
-        warning("Can't currently use https urls, only http.")
-      } else if(str_detect(sound, "^http://")) {
+      } else if(grepl(pattern = "^http(s?)://", x = sound)) {
         temp_file <- tempfile(pattern="")
         if(download.file(sound, destfile = temp_file, quiet = TRUE) == 0) { # The file was successfully downloaded
           sound_path <- temp_file
@@ -123,7 +122,6 @@ beep <- function(sound=1, expr=NULL) {
 #' }
 #' 
 #'@export
-
 beep_on_error <- function(expr, sound = 1) {
   q_expr <- substitute(expr)
   
@@ -137,12 +135,14 @@ beep_on_error <- function(expr, sound = 1) {
 }
 
 is_wav_fname <- function(fname) {
-  str_detect(fname, regex("\\.wav$", ignore_case = TRUE))
+  grepl(pattern = "\\.wav$", x = fname, ignore.case = TRUE)
 }
 
 escape_spaces <- function(s) {
-  str_replace_all(s, " ", "\\\\ ")
+  gsub(pattern = " ", replacement = "\\\\ ", x = s)
 }
+
+
 
 play_vlc <- function(fname) {
   fname <- escape_spaces(fname)

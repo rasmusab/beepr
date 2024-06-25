@@ -30,10 +30,10 @@ an error. This is in order to not risk aborting or stopping the process that
 you wanted to get notified about.
 }
 \examples{
-# Play a "ping" sound if \\code{expr} produces an error
+# Play a "ping" sound if \code{expr} produces an error
 beep_on_error(log("foo"))
 
-# Stay silent if \\code{expr} does not produce an error
+# Stay silent if \code{expr} does not produce an error
 beep_on_error(log(1))
 
 \dontrun{
