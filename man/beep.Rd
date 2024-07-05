@@ -15,10 +15,10 @@ file or specifying an url. The default is 1. Possible sounds are:
 \code{"shotgun"} \item \code{"mario"} \item \code{"wilhelm"} \item
 \code{"facebook"} \item \code{"sword"} } If \code{sound} does not match any
 of the sounds above, or is a valid path or url, a random sound will be
-played. Currently \code{beep} can only handle http urls, https is not
-supported.}
+played. If a negative number is given or the string "none" is given, no
+sound will be played.}
 
-\item{expr}{An optional expression to be excecuted before the sound.}
+\item{expr}{An optional expression to be executed before the sound.}
 }
 \description{
 \code{beep} plays a short sound which is useful if you want to get notified, 
