@@ -5,8 +5,6 @@
 
 A derivative function, `beep_on_error()`, wraps an expression and will only beep if an error occurs when that expression is evaluated.
 
-This package was previously called `pingr` and included a `ping()` function. It has been renamed in order to not be confused with the Unix tool [ping](http://en.wikipedia.org/wiki/Ping_%28networking_utility%29). For the rationale behind `beepr` see the original announcement: http://sumsar.net/blog/2014/01/announcing-pingr/
-
 
 Installation
 ----------------
