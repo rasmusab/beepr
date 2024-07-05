@@ -110,7 +110,8 @@ beep <- function(sound=1, expr=NULL) {
 #'  supported.
 #'  
 #'  
-#'@return NULL
+#'@return The value of \code{expr}, if no error occurs. If an error occurs then
+#'\code{beep_on_error} will re-throw the error.
 #'  
 #'@examples
 #' # Play a "ping" sound if \code{expr} produces an error
@@ -126,14 +127,9 @@ beep <- function(sound=1, expr=NULL) {
 #' 
 #'@export
 beep_on_error <- function(expr, sound = 1) {
-  q_expr <- substitute(expr)
-  
-  msg <- paste0("An error occurred in ", deparse(q_expr))
-  e <- simpleError(msg)
-  
   tryCatch(expr, error = function(e) {
-    message(paste0(msg, ": ", e$message))
     beep(sound)
+    stop(e)
   })
 }
 
@@ -144,8 +140,6 @@ is_wav_fname <- function(fname) {
 escape_spaces <- function(s) {
   gsub(pattern = " ", replacement = "\\\\ ", x = s)
 }
-
-
 
 play_vlc <- function(fname) {
   fname <- escape_spaces(fname)
