@@ -18,7 +18,6 @@
 #'
 #' @name beepr
 #' @encoding UTF-8
-#' @docType package
 #' @author Rasmus Bååth < rasmus.baath@@gmail.com >
-#' @import audio stringr utils
-NULL
+#' @import audio utils
+"_PACKAGE"

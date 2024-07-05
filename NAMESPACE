@@ -3,5 +3,4 @@
 export(beep)
 export(beep_on_error)
 import(audio)
-import(stringr)
 import(utils)

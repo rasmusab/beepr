@@ -114,13 +114,14 @@ beep <- function(sound=1, expr=NULL) {
 #'\code{beep_on_error} will re-throw the error.
 #'  
 #'@examples
+#' \dontrun{
 #' # Play a "ping" sound if \code{expr} produces an error
 #' beep_on_error(log("foo"))
 #' 
 #' # Stay silent if \code{expr} does not produce an error
 #' beep_on_error(log(1))
 #' 
-#' \dontrun{
+#' 
 #' # Play the Wilhelm scream instead of a ping on error.
 #' beep_on_error(runif("bar"), "wilhelm")
 #' }
