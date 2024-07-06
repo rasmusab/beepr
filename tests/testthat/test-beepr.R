@@ -2,6 +2,11 @@
 # However, these tests are chiefly a way to play all the sounds to make sure they sound OK.
 # Sys.sleep(...) is sprinkled in to give the sounds time to play.
 
+# As these tests play sounds, they can't be run on CRAN (and many CIs), as no 
+# sound systems are available there.
+skip_on_cran()
+skip_on_ci()
+
 test_that("all the sounds play without error/warnings/messages", {
   expect_no_condition(beep(1))
   Sys.sleep(01.10 + 0.5)
