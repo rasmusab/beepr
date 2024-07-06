@@ -1,13 +1,14 @@
 ## Test environments
-* Ubuntu 17.10,  R 3.4.4
+* MacOS 14.1.1,  R 4.4.1
 * win-builder (devel and release)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 note
 
-## Reverse dependencies
+## revdepcheck results
 
-* I have run R CMD check on the 2 downstream dependencies.
-  Checked MixedPsy : 0 errors | 0 warnings | 0 notes
-  Checked paramtest: 0 errors | 0 warnings | 0 notes
+We checked 27 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages

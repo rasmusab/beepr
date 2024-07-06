@@ -4,3 +4,4 @@
 ^scratchpad$
 ^blog_posts$
 ^cran-comments\.md$
+^revdep$
