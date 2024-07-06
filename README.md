@@ -5,8 +5,6 @@
 
 A derivative function, `beep_on_error()`, wraps an expression and will only beep if an error occurs when that expression is evaluated.
 
-This package was previously called `pingr` and included a `ping()` function. It has been renamed in order to not be confused with the Unix tool [ping](http://en.wikipedia.org/wiki/Ping_%28networking_utility%29). For the rationale behind `beepr` see the original announcement: http://sumsar.net/blog/2014/01/announcing-pingr/
-
 
 Installation
 ----------------
@@ -29,7 +27,7 @@ Requirements
 
 If you are using Windows or OS X `beepr` relies on the `audio` package for sound playback and no external program is needed.
 
-If you're on Linux `beepr` relies on you having either the `paplay` utility from the Pulse Audio system, the `aplay` utility from the ALSA system or [VLC media player](http://www.videolan.org/vlc/index.html) installed and on the PATH. Chances are that you alread have one of these. If you are on Debian/Ubuntu you can otherwise get VLC by running the following in a terminal:
+If you're on Linux `beepr` relies on you having either the `paplay` utility from the Pulse Audio system, the `aplay` utility from the ALSA system or [VLC media player](http://www.videolan.org/vlc/index.html) installed and on the PATH. Chances are that you already have one of these. If you are on Debian/Ubuntu you can otherwise get VLC by running the following in a terminal:
 
 ```
 sudo apt-get install vlc

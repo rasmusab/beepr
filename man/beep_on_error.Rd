@@ -20,6 +20,10 @@ of the sounds above, or is a valid path or url, a random sound will be
 played. Currently \code{beep} can only handle http urls, https is not
 supported.}
 }
+\value{
+The value of \code{expr}, if no error occurs. If an error occurs then
+\code{beep_on_error} will re-throw the error.
+}
 \description{
 \code{beep_on_error} wraps an expression and plays a short sound only if an 
 error occurs.
@@ -30,13 +34,14 @@ an error. This is in order to not risk aborting or stopping the process that
 you wanted to get notified about.
 }
 \examples{
-# Play a "ping" sound if \\code{expr} produces an error
+\dontrun{
+# Play a "ping" sound if \code{expr} produces an error
 beep_on_error(log("foo"))
 
-# Stay silent if \\code{expr} does not produce an error
+# Stay silent if \code{expr} does not produce an error
 beep_on_error(log(1))
 
-\dontrun{
+
 # Play the Wilhelm scream instead of a ping on error.
 beep_on_error(runif("bar"), "wilhelm")
 }

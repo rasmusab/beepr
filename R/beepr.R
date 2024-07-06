@@ -16,9 +16,9 @@
 #'  \code{"shotgun"} \item \code{"mario"} \item \code{"wilhelm"} \item
 #'  \code{"facebook"} \item \code{"sword"} } If \code{sound} does not match any
 #'  of the sounds above, or is a valid path or url, a random sound will be
-#'  played. Currently \code{beep} can only handle http urls, https is not
-#'  supported.
-#'@param expr An optional expression to be excecuted before the sound.
+#'  played. If a negative number is given or the string "none" is given, no
+#'  sound will be played.
+#'@param expr An optional expression to be executed before the sound.
 #'  
 #'  
 #'@return NULL
@@ -54,16 +54,18 @@ beep <- function(sound=1, expr=NULL) {
               facebook = "facebook.wav",
               sword = "sword.wav")
   sound_path <- NULL
-  if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
+  if(sound < 0 || sound == "none") {
+    # Play the sound of silence
+    return(invisible())
+  } else if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
     if(is.character(sound)) {
-      sound <- str_trim(sound)
+      # Trimming white space from the string defining the sound
+      sound <- gsub("(^\\s+|\\s+$)", "", sound)
       if(file.exists(sound)) {
         sound_path <- sound
-      } else if(str_detect(sound, "^https://")) {
-        warning("Can't currently use https urls, only http.")
-      } else if(str_detect(sound, "^http://")) {
+      } else if(grepl(pattern = "^http(s?)://", x = sound)) {
         temp_file <- tempfile(pattern="")
-        if(download.file(sound, destfile = temp_file, quiet = TRUE) == 0) { # The file was successfully downloaded
+        if(download.file(sound, destfile = temp_file, mode = "wb", quiet = TRUE) == 0) { # The file was successfully downloaded
           sound_path <- temp_file
         } else {
           warning(paste("Tried but could not download", sound))
@@ -108,72 +110,72 @@ beep <- function(sound=1, expr=NULL) {
 #'  supported.
 #'  
 #'  
-#'@return NULL
+#'@return The value of \code{expr}, if no error occurs. If an error occurs then
+#'\code{beep_on_error} will re-throw the error.
 #'  
 #'@examples
+#' \dontrun{
 #' # Play a "ping" sound if \code{expr} produces an error
 #' beep_on_error(log("foo"))
 #' 
 #' # Stay silent if \code{expr} does not produce an error
 #' beep_on_error(log(1))
 #' 
-#' \dontrun{
+#' 
 #' # Play the Wilhelm scream instead of a ping on error.
 #' beep_on_error(runif("bar"), "wilhelm")
 #' }
 #' 
 #'@export
-
 beep_on_error <- function(expr, sound = 1) {
-  q_expr <- substitute(expr)
-  
-  msg <- paste0("An error occurred in ", deparse(q_expr))
-  e <- simpleError(msg)
-  
   tryCatch(expr, error = function(e) {
-    message(paste0(msg, ": ", e$message))
     beep(sound)
+    stop(e)
   })
 }
 
 is_wav_fname <- function(fname) {
-  str_detect(fname, regex("\\.wav$", ignore_case = TRUE))
+  grepl(pattern = "\\.wav$", x = fname, ignore.case = TRUE)
 }
 
 escape_spaces <- function(s) {
-  str_replace_all(s, " ", "\\\\ ")
+  gsub(pattern = " ", replacement = "\\\\ ", x = s)
 }
 
 play_vlc <- function(fname) {
   fname <- escape_spaces(fname)
   system(paste0("vlc -Idummy --no-loop --no-repeat --playlist-autostart --no-media-library --play-and-exit ", fname), 
-         ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+         ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
   invisible(NULL)
 }
 
 play_paplay <- function(fname) {
   fname <- escape_spaces(fname)
-  system(paste0("paplay ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+  system(paste0("paplay ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
   invisible(NULL)
 }
 
 play_aplay <- function(fname) {
   fname <- escape_spaces(fname)
-  system(paste0("aplay --buffer-time=48000 -N -q ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+  system(paste0("aplay --buffer-time=48000 -N -q ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
   invisible(NULL)
 }
 
+package_state <- new.env(parent = emptyenv())
 play_audio <- function(fname) {
+  if(!is.null(package_state$active_audio_instance)) {
+    close(package_state$active_audio_instance)
+  }
   sfx <- load.wave(fname)
-  play(sfx)
+  package_state$active_audio_instance <- play(sfx)
 }
 
 play_file <- function(fname) {
   if(Sys.info()["sysname"] == "Linux") {
-     if(is_wav_fname(fname) && nchar(Sys.which("paplay")) >= 1) {
-      play_paplay(fname)
-    } else if(is_wav_fname(fname) && nchar(Sys.which("aplay")) >= 1) {
+    if(is_wav_fname(fname) && nchar(Sys.which("aplay")) >= 1) {
       play_aplay(fname)
+    } else if(is_wav_fname(fname) && nchar(Sys.which("paplay")) >= 1) {
+      play_paplay(fname)
     } else if(nchar(Sys.which("vlc")) >= 1) {
       play_vlc(fname)
     } else {

@@ -3,8 +3,8 @@
 \docType{package}
 \encoding{UTF-8}
 \name{beepr}
-\alias{beepr}
 \alias{beepr-package}
+\alias{beepr}
 \title{Easily Play Notification Sounds on any Platform}
 \description{
 This package contains one function, beep(), with one purpose: To make it easy
@@ -13,8 +13,8 @@ be useful, for example, if you are running a long analysis in the background
 and want to know when it is ready.
 }
 \details{
-The package contains one main function \code{\link{beep}}, check it out to 
-see what it does. For sound on Windows and MacOS \pkg{beepr} depends on the 
+The package contains one main function \code{\link{beep}}, check it out to
+see what it does. For sound on Windows and MacOS \pkg{beepr} depends on the
 \pkg{audio} package. For sound on Linux \pkg{beepr} depends on that either
 the paplay utility from the Pulse Audio system, the aplay utility from the
 ALSA system, or VLC media player (http://www.videolan.org/vlc/index.html) is
@@ -23,6 +23,14 @@ installed and on the PATH. Chances are that you already have one of these.
 \examples{
 # Play a "ping" sound
 beep()
+
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/rasmusab/beepr}
+  \item Report bugs at \url{https://github.com/rasmusab/beepr/issues}
+}
 
 }
 \author{
