@@ -145,19 +145,19 @@ escape_spaces <- function(s) {
 play_vlc <- function(fname) {
   fname <- escape_spaces(fname)
   system(paste0("vlc -Idummy --no-loop --no-repeat --playlist-autostart --no-media-library --play-and-exit ", fname), 
-         ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+         ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
   invisible(NULL)
 }
 
 play_paplay <- function(fname) {
   fname <- escape_spaces(fname)
-  system(paste0("paplay ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+  system(paste0("paplay ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
   invisible(NULL)
 }
 
 play_aplay <- function(fname) {
   fname <- escape_spaces(fname)
-  system(paste0("aplay --buffer-time=48000 -N -q ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE,wait = FALSE)
+  system(paste0("aplay --buffer-time=48000 -N -q ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
   invisible(NULL)
 }
 

@@ -27,7 +27,7 @@ Requirements
 
 If you are using Windows or OS X `beepr` relies on the `audio` package for sound playback and no external program is needed.
 
-If you're on Linux `beepr` relies on you having either the `paplay` utility from the Pulse Audio system, the `aplay` utility from the ALSA system or [VLC media player](http://www.videolan.org/vlc/index.html) installed and on the PATH. Chances are that you alread have one of these. If you are on Debian/Ubuntu you can otherwise get VLC by running the following in a terminal:
+If you're on Linux `beepr` relies on you having either the `paplay` utility from the Pulse Audio system, the `aplay` utility from the ALSA system or [VLC media player](http://www.videolan.org/vlc/index.html) installed and on the PATH. Chances are that you already have one of these. If you are on Debian/Ubuntu you can otherwise get VLC by running the following in a terminal:
 
 ```
 sudo apt-get install vlc
