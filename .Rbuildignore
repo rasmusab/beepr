@@ -5,3 +5,4 @@
 ^blog_posts$
 ^cran-comments\.md$
 ^revdep$
+^CRAN-SUBMISSION$
