@@ -54,7 +54,7 @@ beep <- function(sound=1, expr=NULL) {
               facebook = "facebook.wav",
               sword = "sword.wav")
   sound_path <- NULL
-  if(sound < 0 || sound == "none") {
+  if(is.numeric(sound) && sound < 0 || sound == "none") {
     # Play the sound of silence
     return(invisible())
   } else if(is.na(sounds[sound]) || length(sounds[sound]) != 1) {
