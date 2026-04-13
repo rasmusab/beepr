@@ -52,7 +52,8 @@ beep <- function(sound=1, expr=NULL) {
               mario = "smb_stage_clear.wav",
               wilhelm = "wilhelm.wav",
               facebook = "facebook.wav",
-              sword = "sword.wav")
+              sword = "sword.wav",
+              groovy = "groovy.wav")
   sound_path <- NULL
   if(sound < 0 || sound == "none") {
     # Play the sound of silence
