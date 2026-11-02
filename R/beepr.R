@@ -8,6 +8,12 @@
 #'an error. This is in order to not risk aborting or stopping the process that
 #'you wanted to get notified about.
 #'
+#'Set the environment variable \env{BEEPR_ENABLED} to \code{false} to disable
+#'sound. The expression \code{expr} is still evaluated.
+#'
+#'On Linux, playback waits for the player to finish and requests termination
+#'after 15 seconds.
+#'
 #'@param sound character string or number specifying what sound to be played by 
 #'  either specifying one of the built in sounds, specifying the path to a wav 
 #'  file or specifying an url. The default is 1. Possible sounds are:
@@ -25,7 +31,7 @@
 #'  
 #' @examples
 #' # Play a "ping" sound
-#' beep()
+#' if (interactive()) beep()
 #' 
 #' \dontrun{
 #' # Play a fanfare instead of a "ping".
@@ -42,6 +48,9 @@
 #'@export
 beep <- function(sound=1, expr=NULL) {
   expr
+  if (Sys.getenv("BEEPR_ENABLED") == "false") {
+    return(invisible(NULL))
+  }
   sounds <- c(ping = "microwave_ping_mono.wav",
               coin = "smb_coin.wav",
               fanfare = "victory_fanfare_mono.wav",
@@ -96,6 +105,8 @@ beep <- function(sound=1, expr=NULL) {
 #'an error. This is in order to not risk aborting or stopping the process that
 #'you wanted to get notified about.
 #'
+#'See \code{\link{beep}} for disabling sound.
+#'
 #'@param expr An expression to be evaluated for errors.
 #' 
 #'@param sound character string or number specifying what sound to be played by 
@@ -138,27 +149,33 @@ is_wav_fname <- function(fname) {
   grepl(pattern = "\\.wav$", x = fname, ignore.case = TRUE)
 }
 
-escape_spaces <- function(s) {
-  gsub(pattern = " ", replacement = "\\\\ ", x = s)
+play_system <- function(command, args = character()) {
+  # Waiting with a timeout lets R terminate and reap the player process,
+  # including when playback hangs or R receives an interrupt.
+  status <- suppressWarnings(system2(command, args, stdout = FALSE,
+                                    stderr = FALSE, wait = TRUE,
+                                    timeout = 15))
+  if (status == 124L) {
+    stop(sprintf("Audio player '%s' timed out after 15 seconds.", command))
+  }
+  if (status != 0L) {
+    stop(sprintf("Audio player '%s' exited with status %s.", command, status))
+  }
+  invisible(NULL)
 }
 
 play_vlc <- function(fname) {
-  fname <- escape_spaces(fname)
-  system(paste0("vlc -Idummy --no-loop --no-repeat --playlist-autostart --no-media-library --play-and-exit ", fname), 
-         ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
-  invisible(NULL)
+  play_system("vlc", c("-Idummy", "--no-loop", "--no-repeat",
+                       "--playlist-autostart", "--no-media-library",
+                       "--play-and-exit", shQuote(fname)))
 }
 
 play_paplay <- function(fname) {
-  fname <- escape_spaces(fname)
-  system(paste0("paplay ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
-  invisible(NULL)
+  play_system("paplay", shQuote(fname))
 }
 
 play_aplay <- function(fname) {
-  fname <- escape_spaces(fname)
-  system(paste0("aplay --buffer-time=48000 -N -q ", fname), ignore.stdout = TRUE, ignore.stderr=TRUE, wait = FALSE)
-  invisible(NULL)
+  play_system("aplay", c("--buffer-time=48000", "-N", "-q", shQuote(fname)))
 }
 
 package_state <- new.env(parent = emptyenv())

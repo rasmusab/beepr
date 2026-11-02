@@ -29,10 +29,16 @@ of different sounds to choose from.
 If \code{beep} is not able to play the sound a warning is issued rather than 
 an error. This is in order to not risk aborting or stopping the process that
 you wanted to get notified about.
+
+Set the environment variable \env{BEEPR_ENABLED} to \code{false} to disable
+sound. The expression \code{expr} is still evaluated.
+
+On Linux, playback waits for the player to finish and requests termination
+after 15 seconds.
 }
 \examples{
 # Play a "ping" sound
-beep()
+if (interactive()) beep()
 
 \dontrun{
 # Play a fanfare instead of a "ping".

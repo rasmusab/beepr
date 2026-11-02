@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' # Play a "ping" sound
-#' beep()
+#' if (interactive()) beep()
 #'
 #' @name beepr
 #' @encoding UTF-8

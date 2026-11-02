@@ -79,3 +79,9 @@ beep(0)
 # Play a sound if an error occurs
 beep_on_error(1 + "a", sound = "wilhelm")
 ```
+
+To disable sound, including during package checks, set the environment variable
+`BEEPR_ENABLED=false` (or use `Sys.setenv(BEEPR_ENABLED = "false")` in R).
+
+On Linux, playback waits for the player to finish and requests termination after
+15 seconds.
