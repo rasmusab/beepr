@@ -32,6 +32,8 @@ error occurs.
 If \code{beep} is not able to play the sound a warning is issued rather than 
 an error. This is in order to not risk aborting or stopping the process that
 you wanted to get notified about.
+
+See \code{\link{beep}} for disabling sound.
 }
 \examples{
 \dontrun{

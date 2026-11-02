@@ -1,3 +1,11 @@
+beepr 2.0.1
+===========
+
+* Linux playback now waits for the player to finish and requests termination
+  after 15 seconds.
+* BEEPR_ENABLED=false disables sound without skipping expressions. Examples
+  and listening tests only play sounds in interactive sessions.
+
 beepr 2.0
 ===========
 

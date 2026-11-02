@@ -22,7 +22,7 @@ installed and on the PATH. Chances are that you already have one of these.
 }
 \examples{
 # Play a "ping" sound
-beep()
+if (interactive()) beep()
 
 }
 \seealso{
