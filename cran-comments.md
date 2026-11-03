@@ -8,6 +8,7 @@ disables sound, and automated examples and listening tests are silent.
 
 * macOS 27.0.1 (aarch64), R 4.5.2
 * Fedora 44 (aarch64, Docker), R 4.6.1
+* Windows Server 2022 (x64, win-builder), R 4.6.2
 * Windows Server 2022 (x64, win-builder), R-devel (2026-11-01 r90825 ucrt)
 
 ## R CMD check results
@@ -16,10 +17,8 @@ R CMD check --as-cran, including PDF and HTML manuals:
 
 * macOS: 0 errors | 0 warnings | 1 note: unable to verify current time.
 * Fedora: 0 errors | 0 warnings | 0 notes.
+* Windows R-release: 0 errors | 0 warnings | 0 notes.
 * Windows R-devel: 0 errors | 0 warnings | 0 notes.
-
-The same source archive was also submitted to win-builder R-release; its
-emailed result link is pending.
 
 ## Reverse dependency checks
 
