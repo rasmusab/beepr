@@ -24,6 +24,4 @@ R CMD check --as-cran, including PDF and HTML manuals:
 
 Checked all 27 direct CRAN reverse dependencies (20 strong, 7 optional) against
 CRAN beepr 2.0 and this update on Ubuntu 24.04 (aarch64), R 4.6.2.
-There were no new check errors, warnings or notes. Tests and examples were
-enabled; manuals and vignette rebuilding were skipped. DCPO reused its installed
-CRAN binary to avoid recompiling its Stan models.
+There were no new check errors, warnings or notes. 
